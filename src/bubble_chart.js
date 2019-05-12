@@ -35870,7 +35870,8 @@ force.on('tick', function(e) {
  }
   };
 
- }
+ });
+}
 
  /*
   * Helper function for "single group mode".
