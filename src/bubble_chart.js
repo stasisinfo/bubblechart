@@ -35461,111 +35461,116 @@ var typeCenters={
 
 
   "January 2017": {
-   x: (width / 30)+(0.02*width),
+   x: (width / 31),
    y: height / 2
   },
   "February 2017": {
-   x: ((width / 30) * 2)+(0.02*width),
+   x: ((width / 31) * 2),
    y: height / 2
   },
   "March 2017": {
-   x: ((width / 30) * 3),
+   x: ((width / 31) * 3),
    y: height / 2
   },
   "April 2017": {
-   x: ((width / 30) * 4),
+   x: ((width / 31) * 4),
    y: height / 2
   },
   "May 2017": {
-   x: ((width / 30) * 5),
+   x: ((width / 31) * 5),
    y: height / 2
   },
   "June 2017": {
-   x: (width / 30) * 6,
+   x: (width / 31) * 6,
    y: height / 2
   },
   "July 2017": {
-   x: (width / 30) * 7,
+   x: (width / 31) * 7,
    y: height / 2
   },
   "August 2017": {
-   x: (width / 30) * 8,
+   x: (width / 31) * 8,
    y: height / 2
   },
   "September 2017": {
-   x: (width / 30) * 9,
+   x: (width / 31) * 9,
    y: height / 2
   },
   "October 2017": {
-   x: (width / 30) * 10,
+   x: (width / 31) * 10,
    y: height / 2
   },
   "November 2017": {
-   x: (width / 30) * 11,
+   x: (width / 31) * 11,
    y: height / 2
   },
   "December 2017": {
-   x: (width / 30) * 12,
+   x: (width / 31) * 12,
    y: height / 2
   },
   "January 2018": {
-   x: (width / 30) * 13,
+   x: (width / 31) * 14,
    y: height / 2
   },
   "February 2018": {
-   x: (width / 30) * 14,
+   x: (width / 31) * 15,
    y: height / 2
   },
   "March 2018": {
-   x: (width / 30) * 15,
+   x: (width / 31) * 16,
    y: height / 2
   },
   "April 2018": {
-   x: (width / 30) * 16,
+   x: (width / 31) * 17,
    y: height / 2
   },
   "May 2018": {
-   x: (width / 30) * 17,
+   x: (width / 31) * 18,
    y: height / 2
   },
   "June 2018": {
-   x: (width / 30) * 18,
+   x: (width / 31) * 19,
    y: height / 2
   },
   "July 2018": {
-   x: (width / 30) * 19,
+   x: (width / 31) * 20,
    y: height / 2
   },
   "August 2018": {
-   x: (width / 30) * 20,
+   x: (width / 31) * 21,
    y: height / 2
   },
   "September 2018": {
-   x: (width / 30) * 21,
+   x: (width / 31) * 22,
    y: height / 2
   },
   "October 2018": {
-   x: (width / 30) * 22,
+   x: (width / 31) * 23,
    y: height / 2
   },
   "November 2018": {
-   x: ((width / 30) * 23),
+   x: ((width / 31) * 24),
    y: height / 2
   },
   "December 2018": {
-   x: ((width / 30) * 24),
+   x: ((width / 31) * 25),
    y: height / 2
   },
   "January 2019": {
-   x: ((width / 30) * 25),
+   x: ((width / 31) * 26),
    y: height / 2
   },
   "February 2019": {
-   x: ((width / 30)*26)-(0.02*width),
+   x: ((width / 31)*27)-(0.02*width),
    y: height / 2
   },
   "March 2019": {
-   x: ((width / 30) * 27)-(0.02*width),
+   x: ((width / 31) * 29)-(0.02*width),
+   y: height / 2
+  },
+
+  "April 2019": {
+   x: ((width / 31) * 30)-(0.02*width),
    y: height / 2
   }
  };
@@ -35574,39 +35579,39 @@ var typeCenters={
  var monthsTitleX = {
 
 
-  "January 2017": (width / 27),
-  "February 2017": (width / 27) * 2,
-  "March 2017": (width / 27) * 3,
-  "April 2017": (width / 27) * 4,
-  "May 2017": (width / 27) * 5,
-  "June 2017": (width / 27) * 6,
-  "July 2017": (width / 27) * 7,
-  "August 2017": (width / 27) * 8,
-  "September 2017": (width / 27) * 9,
-  "October 2017": (width / 27) * 10,
-  "November 2017": (width / 27) * 11,
-  "December 2017": (width / 27) * 12,
-  "January 2018": (width / 27) * 13,
-  "February 2018": (width / 27) * 14,
-  "March 2018": (width / 27) * 15,
-  "April 2018": (width / 27) * 16,
-  "May 2018": (width / 27) * 17,
-  "June 2018": (width / 27) * 18,
-  "July 2018": (width / 27) * 19,
-  "August 2018": (width / 27) * 20,
-  "September 2018": (width / 27) * 21,
-  "October 2018": (width / 27) * 22,
-  "November 2018": (width / 27) * 23,
-  "December 2018": (width / 27) * 24,
-  "January 2019": (width / 27) * 25,
-  "February 2019": (width / 27) * 26,
-  "March 2019": (width / 27) * 27
+  "January 2017": (width / 40),
+  "February 2017": (width / 40) * 2,
+  "March 2017": (width / 40) * 3,
+  "April 2017": (width / 40) * 4,
+  "May 2017": (width / 40) * 5,
+  "June 2017": (width / 40) * 6,
+  "July 2017": (width / 40) * 7,
+  "August 2017": (width / 40) * 8,
+  "September 2017": (width / 40) * 9,
+  "October 2017": (width / 40) * 10,
+  "November 2017": (width / 40) * 11,
+  "December 2017": (width / 40) * 12,
+  "January 2018": (width / 40) * 13,
+  "February 2018": (width / 40) * 14,
+  "March 2018": (width / 40) * 15,
+  "April 2018": (width / 40) * 16,
+  "May 2018": (width / 40) * 17,
+  "June 2018": (width / 40) * 18,
+  "July 2018": (width / 40) * 19,
+  "August 2018": (width / 40) * 20,
+  "September 2018": (width / 40) * 21,
+  "October 2018": (width / 40) * 22,
+  "November 2018": (width / 40) * 23,
+  "December 2018": (width / 40) * 24,
+  "January 2019": (width / 40) * 25,
+  "February 2019": (width / 40) * 26,
+  "March 2019": (width / 40) * 27
  };
 
 
  // Used when setting up force and
  // moving around nodes
- var damper = 0.102;
+ var damper = 0.2;
 
  // These will be set in create_nodes and create_vis
  var svg = null;
@@ -35624,7 +35629,7 @@ var typeCenters={
  // appropriate for the visualization dimensions.
  function charge(d) {
 
-  return -Math.pow(d.radius, 2.0) / 8;
+  return -Math.pow(d.radius, 2) / 8;
  }
 
  // Here we create a force layout and
@@ -35633,7 +35638,7 @@ var typeCenters={
  // to specify how the force layout should behave.
  // More configuration is done below.
  var force = d3.layout.force()
-  .size([width, height])
+  .size([1000, 800])
   .charge(charge)
   .gravity(-0.01)
   .friction(0.9);
@@ -35642,7 +35647,7 @@ var typeCenters={
  // Nice looking colors - no reason to buck the trend
  var fillColor = d3.scale.ordinal()
   .domain(['medium','low', 'high'])
-  .range(['#239f40', '#2a52be', '#da0000']);
+  .range([ '#da0000','#239f40','#2a52be']);
 
  // Sizes bubbles based on their area instead of raw radius
  var radiusScale = d3.scale.pow()
@@ -35708,7 +35713,7 @@ var typeCenters={
   myNodes.sort(function(a, b) {
    return b.value - a.value;
   });
-  console.log("THIS IS THE LENGTH"+myNodes.length);
+  //console.log("THIS IS THE LENGTH"+myNodes.length);
   return myNodes;
  }
 
@@ -35794,11 +35799,13 @@ var typeCenters={
 
  function hideYears() {
   svg.selectAll('.year').remove();
+  svg.selectAll('.venn').remove();
 
  }
 
   function hideTags() {
   svg.selectAll('.tags').remove();
+  svg.selectAll('.venn').remove();
 
  }
 
@@ -35806,6 +35813,7 @@ var typeCenters={
  function hideMonths() {
   svg.selectAll('.months').remove();
   svg.selectAll('.xaxis').remove();
+  svg.selectAll('.venn').remove();
  }
 
  function groupBubbles() {
@@ -35833,46 +35841,7 @@ var typeCenters={
   force.start();
  }
 
- /*
-  function vennBubbles() {
-  hideTags();
-  hideYears();
-  hideMonths();
 
-  svg.append("circle").attr("cx",width/3).attr("cy",height/2).attr("r",height/3).style("fill","yellow").style("opacity",0.5);
-  svg.append("circle").attr("cx",2*width/3).attr("cy",height/2).attr("r",height/3).style("fill","red").style("opacity",0.5);
-  svg.append("circle").attr("cx",width/2).attr("cy",height/3).attr("r",height/3).style("fill","green").style("opacity",0.5);
-  svg.append("circle").attr("cx",width/2).attr("cy",2*height/3).attr("r",height/3).style("fill","cyan").style("opacity",0.5);
-
-
- 
-
-  HumanRights:d.HumanRights_Status,
-    IRGC: d["IRGC"],
-    NPWMD: (d.Tag.includes("NPWMD") === true) ? 'Yes' : 'No',
-    SDGT: (d.Tag.includes("SDGT") === true) ? 'Yes' : 'No',
-    NONIR: (d.Tag.includes("NONIR") === true) ? 'Yes' : 'No',
-    Terrorism_Status:d.Terrorism_Status,
-    Proliferation:d.Ploriferation_Status,
-
-
-force.on('tick', function(e) {
-
-  return function(d) {
-    if(d["IRGC"]=="Yes" && d.Terrorism_Status=="Yes" && d.Proliferation=="Yes" && d.HumanRights=="Yes"){
-   d.x = d.x + (center.x - d.x) * damper * alpha;
-   d.y = d.y + (center.y - d.y) * damper * alpha;
- }
-
- else{
-   d.x = d.x + (0 - d.x) * damper * alpha;
-   d.y = d.y + (0 - d.y) * damper * alpha;
- }
-  };
-
- });
-}
-   */ 
  /*
   * Helper function for "single group mode".
   * Returns a function that takes the data for a
@@ -36047,14 +36016,53 @@ function moveToTag(tagval,alpha) {
   force.start();
  }
 
+function drawBubbles(){
+  hideTags();
+  hideYears();
+  hideMonths();
+
+  svg.append("circle").attr("cx",width/3).attr("cy",height/2).attr("r",height/3).attr("class", "venn").style("fill","yellow").style("opacity",0.5);
+  svg.append("circle").attr("cx",2*width/3).attr("cy",height/2).attr("r",height/3).attr("class", "venn").style("fill","red").style("opacity",0.5);
+  svg.append("circle").attr("cx",width/2).attr("cy",height/3).attr("r",height/3).attr("class", "venn").style("fill","green").style("opacity",0.5);
+  svg.append("circle").attr("cx",width/2).attr("cy",2*height/3).attr("r",height/3).attr("class", "venn").style("fill","cyan").style("opacity",0.5);
+
+
+}
+
+function vennBubbles() {
+ 
+  drawBubbles();
+
+
+  force.on('tick', function(e) {
+   bubbles.each(moveToVenn(e.alpha))
+    .attr('r', function(d) {
+     if (resize == 1) {
+      return d.radius / 2;
+     } else {
+      return d.radius;
+     }
+    })
+    .attr('cx', function(d) {
+     return d.x;
+    })
+    .attr('cy', function(d) {
+     return d.y;
+    });
+  });
+
+  force.start();
+ }
+
+
 
  // define the x scale (horizontal)
- var mindate = new Date(2017, 0, 1);
- var maxdate = new Date(2019, 5, 30);
+ var mindate = new Date(2016, 11, 1);
+ var maxdate = new Date(2019, 03, 30);
 
  var xScale = d3.time.scale()
   .domain([mindate, maxdate]) // values between for month of january
-  .range([0, width-10]); // map these the the chart width = total width minus padding at both sides
+  .range([0, width]); // map these the the chart width = total width minus padding at both sides
 
 
 
@@ -36205,7 +36213,7 @@ hideTags();
 
   months.enter().append("g")
    .attr("class", "xaxis") // give it a class so it can be used to select only xaxis labels  below
-   .attr("transform", "translate(15," + (2*height / 3) + ")")
+   .attr("transform", "translate(1," + (2*height / 3) + ")")
    .call(xAxis);
 
  }
@@ -36237,11 +36245,46 @@ hideTags();
 
  function moveToMonths(alpha) {
   return function(d) {
-    console.log(monthNames[d.date.getMonth()]);
+    //console.log(monthNames[d.date.getMonth()]);
 
    var target = monthCenters[monthNames[d.date.getMonth()] + " " + d.year];
+   //console.log(target);
+   //console.log(d.year);
 
 
+   d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
+   d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
+
+
+
+
+  };
+
+
+
+ }
+
+
+  function moveToVenn(alpha) {
+  return function(d) {
+  
+   if(d.HumanRights=="Yes"&& d.Proliferation=="No" && d.Terrorism_Status=="No" && d.IRGC=="No"){
+        target={"x":width/6,"y":height/2};
+   }
+
+   if(d.HumanRights=="No"&& d.Proliferation=="Yes" && d.Terrorism_Status=="No" && d.IRGC=="No"){
+        target={"x":width/2,"y":height/4};
+   }
+
+   else{
+    target={"x":width-10,"y":height-10};
+   }
+ /*
+  svg.append("circle").attr("cx",width/3).attr("cy",height/2).attr("r",height/3).style("fill","yellow").style("opacity",0.5);
+  svg.append("circle").attr("cx",2*width/3).attr("cy",height/2).attr("r",height/3).style("fill","red").style("opacity",0.5);
+  svg.append("circle").attr("cx",width/2).attr("cy",height/3).attr("r",height/3).style("fill","green").style("opacity",0.5);
+  svg.append("circle").attr("cx",width/2).attr("cy",2*height/3).attr("r",height/3)
+*/
    d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
    d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
 
@@ -36290,14 +36333,14 @@ hideTags();
   // change outline to indicate hover state.
   d3.select(this).attr('stroke', 'black');
 
-  var content = '<div class="name">Date: </div><div class="value">' +
+  var content = '<div class="name">Name: </div><div class="value">' +
    d.name +
    '</div><br/>' +
-   '<div class="name">Total Sanctions: </div><div class="value">' +
-   d.total +
+   '<div class="name">Time: </div><div class="value">' +
+   d.date +
    '</div><br/>' +
    '<div class="name">Source: </div><div class="value">' +
-   '<a href="'+d.source +'">'+d.source+"</a>"+
+   '<a href="'+d.website +'">'+d.website+"</a>"+
    '</div>';
   tooltip.showTooltip(content, d3.event);
  }
@@ -36316,7 +36359,7 @@ hideTags();
   */
  chart.toggleDisplay = function(displayName) {
 
-console.log(displayName);
+//console.log(displayName);
 
   if (displayName === 'year') {
    resize = 0;
