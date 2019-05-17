@@ -35654,14 +35654,17 @@ var typeCenters={
   .exponent(0.5)
   .range([2, 85]);
 
+var fillcolor;
  function hideDetail(d) {
-  setTimeout(function hider(d){
-  // reset outline
-  //d3.select(this)
-   //.attr('stroke', d3.rgb(fillColor(d.year)).darker());
+ 
+ fillcolor=d3.rgb(d3.select(this).attr("fill"));
+
+ 
+  d3.select(this)
+   .attr('stroke', fillcolor.darker(1));
   
   tooltip.hideTooltip();
- },2000);}
+ }
  /*
   * This data manipulation function takes the raw data from
   * the CSV file and converts it into an array of node objects.
@@ -35688,7 +35691,10 @@ var typeCenters={
    return {
     id: d.id,
     radius: 5,
-    total: d.Total,
+    tags:d.Tag,
+    Location_Country:d.Location_Country,
+    Nationality:d.Nationality,
+    kind:d.Kind,
     value: d.ID,
     name: d.Name,
     org: d.New,
@@ -35696,14 +35702,17 @@ var typeCenters={
     date: new Date(d.Date.replace(",", "")),
     year: d.Date.substr(-4),
     HumanRights:d.HumanRights_Status,
+    Other:d.Other,
     IRGC: d["IRGC"],
     NPWMD: (d.Tag.includes("NPWMD") === true) ? 'Yes' : 'No',
     SDGT: (d.Tag.includes("SDGT") === true) ? 'Yes' : 'No',
-    NONIR: (d.Tag.includes("NONIR") === true) ? 'Yes' : 'No',
+    NONIR: ((d.Type=="individual" && d.Nationality=="Iran")||(d.Type!=="individual" && d.Location_Country=="Iran") === true) ? 'Yes' : 'No',
     Terrorism_Status:d.Terrorism_Status,
     Proliferation:d.Ploriferation_Status,
     source: d["Source"],
     Type: d.Type,
+    info:d.Info,
+    remarks:d.Remarks,
     x: Math.random() * 900,
     y: Math.random() * 800
    };
@@ -36016,15 +36025,28 @@ function moveToTag(tagval,alpha) {
   force.start();
  }
 
+    d3.selection.prototype.moveToBack = function() {  
+        return this.each(function() { 
+            var firstChild = this.parentNode.firstChild; 
+            if (firstChild) { 
+                this.parentNode.insertBefore(this, firstChild); 
+            } 
+        });
+    }; 
+
 function drawBubbles(){
   hideTags();
   hideYears();
   hideMonths();
 
-  svg.append("circle").attr("cx",width/3).attr("cy",height/2).attr("r",height/3).attr("class", "venn").style("fill","yellow").style("opacity",0.5);
-  svg.append("circle").attr("cx",2*width/3).attr("cy",height/2).attr("r",height/3).attr("class", "venn").style("fill","red").style("opacity",0.5);
-  svg.append("circle").attr("cx",width/2).attr("cy",height/3).attr("r",height/3).attr("class", "venn").style("fill","green").style("opacity",0.5);
-  svg.append("circle").attr("cx",width/2).attr("cy",2*height/3).attr("r",height/3).attr("class", "venn").style("fill","cyan").style("opacity",0.5);
+  svg.append("circle").attr("cx",width/3).attr("cy",height/2).attr("r",height/3).attr("class", "venn").style("fill","yellow").style("opacity",0.5).moveToBack();
+  svg.append('text').attr('class', 'tags').attr('x',width/8).attr('y',height/2).text("Terrorism").moveToBack();
+  svg.append("circle").attr("cx",2*width/3).attr("cy",height/2).attr("r",height/3).attr("class", "venn").style("fill","red").style("opacity",0.5).moveToBack();
+   svg.append('text').attr('class', 'tags').attr('x',width/3).attr('y',height).text("Human Rights").moveToBack();
+  svg.append("circle").attr("cx",width/2).attr("cy",height/3).attr("r",height/3).attr("class", "venn").style("fill","green").style("opacity",0.5).moveToBack();
+   svg.append('text').attr('class', 'tags').attr('x',width).attr('y',height/2).text("Other").moveToBack();
+  svg.append("circle").attr("cx",width/2).attr("cy",2*height/3).attr("r",height/3).attr("class", "venn").style("fill","cyan").style("opacity",0.5).moveToBack();
+   svg.append('text').attr('class', 'tags').attr('x',width/2).attr('y',height/6).text("Proliferation").moveToBack();
 
 
 }
@@ -36178,6 +36200,24 @@ hideTags();
    });
  }
 
+    if (tagval == "Terrorism") {
+
+  var tagData = d3.keys(tagTitleX);
+  var tags = svg.selectAll('tagval')
+   .data(tagData);
+
+  tags.enter().append('text')
+   .attr('class', 'tags')
+   .attr('x', function(d) {
+    return tagTitleX[d];
+   })
+   .attr('y', 40)
+   .attr('text-anchor', 'middle')
+   .text(function(d) {
+    return "Related to Terrorism?: "+d;
+   });
+ }
+
   if (tagval == "type") {
 
   var tagData = d3.keys(typeCenters);
@@ -36268,12 +36308,26 @@ hideTags();
   function moveToVenn(alpha) {
   return function(d) {
   
-   if(d.HumanRights=="Yes"&& d.Proliferation=="No" && d.Terrorism_Status=="No" && d.IRGC=="No"){
-        target={"x":width/6,"y":height/2};
+   if(d.HumanRights=="Yes"&& d.Proliferation=="No" && d.Terrorism_Status=="No" && d.Other=="No"){
+        target={"x":width/4,"y":height/2};
    }
 
-   if(d.HumanRights=="No"&& d.Proliferation=="Yes" && d.Terrorism_Status=="No" && d.IRGC=="No"){
-        target={"x":width/2,"y":height/4};
+   else if(d.HumanRights=="No"&& d.Proliferation=="Yes" && d.Terrorism_Status=="No" && d.Other=="No"){
+        target={"x":10+width/2,"y":height/5};
+   }
+
+   else if(d.HumanRights=="No"&& d.Proliferation=="No" && d.Terrorism_Status=="Yes" && d.Other=="No"){
+        target={"x":10+width/2,"y":4*height/5};
+   }
+   else if(d.HumanRights=="No"&& d.Proliferation=="No" && d.Terrorism_Status=="No" && d.Other=="Yes"){
+        target={"x":4*width/5,"y":height/2};
+   }
+
+  else if(d.HumanRights=="No"&& d.Proliferation=="No" && d.Terrorism_Status=="No" && d.Other=="Yes"){
+        target={"x":4*width/5,"y":height/2};
+   }
+     else if(d.HumanRights=="Yes"&& d.Proliferation=="Yes" && d.Terrorism_Status=="Yes" && d.Other=="Yes"){
+        target={"x":width/2,"y":height/2};
    }
 
    else{
@@ -36335,10 +36389,29 @@ hideTags();
 
   var content = '<div class="name">Name: </div><div class="value">' +
    d.name +
-   '</div><br/>' +
-   '<div class="name">Time: </div><div class="value">' +
-   d.date +
-   '</div><br/>' +
+   '</div>' +
+   '<div class="name">Kind: </div><div class="value">' +
+   d.kind +
+   '</div>' +
+  '<div class="name">Nationality: </div><div class="value">' +
+   d.Nationality +
+   '</div>' +
+    '<div class="name">Location Country: </div><div class="value">' +
+   d.Location_Country +
+   '</div>' +
+       '<div class="name">Type: </div><div class="value">' +
+   d.Type+
+   '</div>' +
+       '<div class="name">Tags: </div><div class="value">' +
+   d.tags +
+   '</div>' +
+       '<div class="name">Info: </div><div class="value">' +
+   d.info +
+   '</div>' +
+      '</div>' +
+       '<div class="name">Remarks: </div><div class="value">' +
+   d.remarks +
+   '</div>' +
    '<div class="name">Source: </div><div class="value">' +
    '<a href="'+d.website +'">'+d.website+"</a>"+
    '</div>';
