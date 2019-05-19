@@ -35408,11 +35408,43 @@ function bubbleChart() {
  };
 
  var typeCentersX={
-"individual":50,
-  "entity":200+width/4,
-  "aircraft":300+2*width/4,
+"individual":70,
+  "entity":2*width/4,
+  "aircraft":50+3*width/4,
   "vessel":width+100
  };
+
+  var kindCentersX={
+"New":70,
+"Re-Imposed":2*width/4,
+"Re-Imposed (Tag Added)":50+3*width/4,
+"Tag Added":width+100
+ };
+
+var kindCenters={
+  "New":{
+    x: width / 4,
+   y: height / 2
+  },
+  "Re":{
+    x: 2*width / 4,
+   y: height / 2
+  },
+  "Re - Tag added":{
+    x: 3*width / 4,
+   y: height / 2
+  },
+  "Tag added":{
+    x: (4*width / 4),
+   y: height / 2
+  },
+    "Tag Added":{
+    x: (4*width / 4),
+   y: height / 2
+  },
+
+};
+
 
 var typeCenters={
   "individual":{
@@ -35690,12 +35722,13 @@ var fillcolor;
  
    return {
     id: d.id,
-    radius: 5,
+    radius: 10,
     tags:d.Tag,
     Location_Country:d.Location_Country,
     Nationality:d.Nationality,
-    kind:d.Kind,
+    Kind:d.Kind,
     value: d.ID,
+    Linked:d.Relation,
     name: d.Name,
     org: d.New,
     group: d.Individual,
@@ -35703,6 +35736,7 @@ var fillcolor;
     year: d.Date.substr(-4),
     HumanRights:d.HumanRights_Status,
     Other:d.Other,
+    Place:(d.Type=="entity") ? 'Location: </div><div class="value">'+d.Location_Country  : 'Nationality: </div><div class="value">'+d.Nationality,
     IRGC: d["IRGC"],
     NPWMD: (d.Tag.includes("NPWMD") === true) ? 'Yes' : 'No',
     SDGT: (d.Tag.includes("SDGT") === true) ? 'Yes' : 'No',
@@ -35999,6 +36033,16 @@ function moveToTag(tagval,alpha) {
    d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
   };
 }
+
+ else if (tagval == "kind") {
+  return function(d) {
+    //console.log(d.Kind);
+   var target = kindCenters[d.Kind];
+   d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
+   d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
+  };
+}
+
 }
  function splitTimeline() {
   hideYears();
@@ -36060,7 +36104,7 @@ function vennBubbles() {
    bubbles.each(moveToVenn(e.alpha))
     .attr('r', function(d) {
      if (resize == 1) {
-      return d.radius / 2;
+      return d.radius / 4;
      } else {
       return d.radius;
      }
@@ -36106,7 +36150,7 @@ hideTags();
    .attr('y', 40)
    .attr('text-anchor', 'middle')
    .text(function(d) {
-    return "Non-IR status?: "+d;
+    return "Iran Status: "+d;
    });
  }
 
@@ -36124,7 +36168,7 @@ hideTags();
    .attr('y', 40)
    .attr('text-anchor', 'middle')
    .text(function(d) {
-    return "IRGC "+d;
+    return "Related to IRGC :"+d;
    });
  }
 
@@ -36196,7 +36240,7 @@ hideTags();
    .attr('y', 40)
    .attr('text-anchor', 'middle')
    .text(function(d) {
-    return "Proliferation: "+d;
+    return "Related to Non-Proliferation: "+d;
    });
  }
 
@@ -36214,7 +36258,7 @@ hideTags();
    .attr('y', 40)
    .attr('text-anchor', 'middle')
    .text(function(d) {
-    return "Related to Terrorism?: "+d;
+    return "Related to Terrorism: "+d;
    });
  }
 
@@ -36229,6 +36273,25 @@ hideTags();
    .attr('x', function(d) {
     //console.log(typeCenters[d]["x"])
     return typeCentersX[d];
+   })
+   .attr('y', 40)
+   .attr('text-anchor', 'middle')
+   .text(function(d) {
+    return d;
+   });
+ }
+
+   if (tagval == "kind") {
+
+  var tagData = d3.keys(kindCentersX);
+  var tags = svg.selectAll('tagval')
+   .data(tagData);
+
+  tags.enter().append('text')
+   .attr('class', 'tags')
+   .attr('x', function(d) {
+    //console.log(typeCenters[d]["x"])
+    return kindCentersX[d];
    })
    .attr('y', 40)
    .attr('text-anchor', 'middle')
@@ -36253,7 +36316,7 @@ hideTags();
 
   months.enter().append("g")
    .attr("class", "xaxis") // give it a class so it can be used to select only xaxis labels  below
-   .attr("transform", "translate(1," + (2*height / 3) + ")")
+   .attr("transform", "translate(1," + (7*height/8) + ")")
    .call(xAxis);
 
  }
@@ -36331,7 +36394,7 @@ hideTags();
    }
 
    else{
-    target={"x":width-10,"y":height-10};
+    target={"x":width+50,"y":height+50};
    }
  /*
   svg.append("circle").attr("cx",width/3).attr("cy",height/2).attr("r",height/3).style("fill","yellow").style("opacity",0.5);
@@ -36383,38 +36446,44 @@ hideTags();
   * Function called on mouseover to display the
   * details of a bubble in the tooltip.
   */
+  //var datetext="";
  function showDetail(d) {
   // change outline to indicate hover state.
   d3.select(this).attr('stroke', 'black');
 
-  var content = '<div class="name">Name: </div><div class="value">' +
+
+
+  var content = '<div class="name">Name: </div><div class="value"> ' +
    d.name +
    '</div>' +
-   '<div class="name">Kind: </div><div class="value">' +
-   d.kind +
+   '<div class="name">ID: </div><div class="value"> ' +
+   d.value +
    '</div>' +
-  '<div class="name">Nationality: </div><div class="value">' +
-   d.Nationality +
+   '<div class="name">Date: </div><div class="value"> ' +
+   d.date.toString().substring(0,16) +
    '</div>' +
-    '<div class="name">Location Country: </div><div class="value">' +
-   d.Location_Country +
-   '</div>' +
-       '<div class="name">Type: </div><div class="value">' +
+
+          '<div class="name">Designee Type: </div><div class="value"> ' +
    d.Type+
    '</div>' +
-       '<div class="name">Tags: </div><div class="value">' +
+    '<div class="name">Linked to Designee Type: </div><div class="value"> ' +
+   d.Linked +
+   '</div>' +
+   '<div class="name">Kind of Sanction: </div><div class="value"> ' +
+   d.Kind +
+   '</div>' +
+  '<div class="name">'+d.Place+
+   '</div>' +
+   '<div class="name">Tags: </div><div class="value"> ' +
    d.tags +
    '</div>' +
-       '<div class="name">Info: </div><div class="value">' +
+       '<div class="name">Info: </div><div class="value"> ' +
    d.info +
    '</div>' +
       '</div>' +
-       '<div class="name">Remarks: </div><div class="value">' +
+       '<div class="name">Remarks: </div><div class="value"> ' +
    d.remarks +
-   '</div>' +
-   '<div class="name">Source: </div><div class="value">' +
-   '<a href="'+d.website +'">'+d.website+"</a>"+
-   '</div>';
+   '</div>'
   tooltip.showTooltip(content, d3.event);
  }
 
@@ -36452,7 +36521,7 @@ hideTags();
 
   else if(displayName=='venn'){
 
-   resize = 0;
+   resize = 1;
    vennBubbles();
   }
 
