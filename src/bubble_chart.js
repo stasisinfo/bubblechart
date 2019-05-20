@@ -35416,8 +35416,8 @@ function bubbleChart() {
 
   var kindCentersX={
 "New":70,
-"Re-Imposed":2*width/4,
-"Re-Imposed (Tag Added)":50+3*width/4,
+"Reimposed":2*width/4,
+"Reimposed with more Tags":50+3*width/4,
 "Tag Added":width+100
  };
 
@@ -35728,7 +35728,7 @@ var fillcolor;
     Nationality:d.Nationality,
     Kind:d.Kind,
     value: d.ID,
-    Linked:d.Relation,
+    Linked:d.Relation.replace("Linked To:",""),
     name: d.Name,
     org: d.New,
     group: d.Individual,
@@ -35736,6 +35736,7 @@ var fillcolor;
     year: d.Date.substr(-4),
     HumanRights:d.HumanRights_Status,
     Other:d.Other,
+    Identification:d.Identification,
     Place:(d.Type=="entity") ? 'Location: </div><div class="value">'+d.Location_Country  : 'Nationality: </div><div class="value">'+d.Nationality,
     IRGC: d["IRGC"],
     NPWMD: (d.Tag.includes("NPWMD") === true) ? 'Yes' : 'No',
@@ -36128,7 +36129,7 @@ function vennBubbles() {
 
  var xScale = d3.time.scale()
   .domain([mindate, maxdate]) // values between for month of january
-  .range([0, width]); // map these the the chart width = total width minus padding at both sides
+  .range([0, 7/6*width]); // map these the the chart width = total width minus padding at both sides
 
 
 
@@ -36168,7 +36169,7 @@ hideTags();
    .attr('y', 40)
    .attr('text-anchor', 'middle')
    .text(function(d) {
-    return "Related to IRGC :"+d;
+    return "Presence of IRGC Tag: "+d;
    });
  }
 
@@ -36222,7 +36223,7 @@ hideTags();
    .attr('y', 40)
    .attr('text-anchor', 'middle')
    .text(function(d) {
-    return "Presence of Human Rights Factors: "+d;
+    return "Presence of Human Rights Tags: "+d;
    });
  }
 
@@ -36240,7 +36241,7 @@ hideTags();
    .attr('y', 40)
    .attr('text-anchor', 'middle')
    .text(function(d) {
-    return "Related to Non-Proliferation: "+d;
+    return "Presence of Proliferation-Related Tags: "+d;
    });
  }
 
@@ -36258,7 +36259,7 @@ hideTags();
    .attr('y', 40)
    .attr('text-anchor', 'middle')
    .text(function(d) {
-    return "Related to Terrorism: "+d;
+    return "Presence of Terrorism-Related Tags: "+d;
    });
  }
 
@@ -36456,9 +36457,6 @@ hideTags();
   var content = '<div class="name">Name: </div><div class="value"> ' +
    d.name +
    '</div>' +
-   '<div class="name">ID: </div><div class="value"> ' +
-   d.value +
-   '</div>' +
    '<div class="name">Date: </div><div class="value"> ' +
    d.date.toString().substring(0,16) +
    '</div>' +
@@ -36466,7 +36464,7 @@ hideTags();
           '<div class="name">Designee Type: </div><div class="value"> ' +
    d.Type+
    '</div>' +
-    '<div class="name">Linked to Designee Type: </div><div class="value"> ' +
+    '<div class="name">Linked to: </div><div class="value"> ' +
    d.Linked +
    '</div>' +
    '<div class="name">Kind of Sanction: </div><div class="value"> ' +
@@ -36479,6 +36477,9 @@ hideTags();
    '</div>' +
        '<div class="name">Info: </div><div class="value"> ' +
    d.info +
+   '</div>' +
+          '<div class="name">Identification: </div><div class="value"> ' +
+   d.Identification +
    '</div>' +
       '</div>' +
        '<div class="name">Remarks: </div><div class="value"> ' +
@@ -36500,6 +36501,12 @@ hideTags();
   * displayName is expected to be a string and either 'year' or 'all'.
   */
  chart.toggleDisplay = function(displayName) {
+
+//svg2=d3.select("textarea").append('svg');
+//svg2.append('text').attr('class', 'tags').attr('x',width/8).attr('y',height/2).text("The 'tags' for each sanctions list entry indicate the sanctions program pursuant to which the target has been designated or identified under the Trump Administration. Each sanctions list entry may have multiple program tags");
+
+var textareas=document.getElementById('textarea');
+textareas.innerHTML="The 'tags' for each sanctions list entry indicate the sanctions program pursuant to which the target has been designated or identified under the Trump Administration. Each sanctions list entry may have multiple program tags";
 
 //console.log(displayName);
 
@@ -36527,10 +36534,9 @@ hideTags();
 
 
 
-  else if (displayName === 'NONIR'||'IRGC'||'SDGT'||'NPWMD'||"Human Rights"||"type"||"Proliferation") {
+  else if (displayName === 'NONIR'||'IRGC'||"Human Rights"||"type"||"Proliferation") {
    resize = 1;
    splitTag(displayName);
-
 
   }
 
