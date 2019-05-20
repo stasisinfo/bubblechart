@@ -8,8 +8,8 @@
   <body>
 
 <header style="text-align:center;">
-                <h1>1000Sanctions</h1>
-                <p>A Visual Analysis of the Sanctions placed on Iran</p>
+                <h1>Iran Sanctions under the Trump Administration</h1>
+                <p>Tracking Iran-related U.S. Sanctions Designations</p>
               </header>
   <div class="container">
 
@@ -25,6 +25,10 @@
        <div style="width:10px;height:10px;background:#F8333C;"></div>Vessel<br>
 
 </p>
+<style type="text/css">
+  path{fill:powderblue;stroke:black;stroke-width:1;}
+</style>
+
 
 <svg
    id="vis"
@@ -1095,7 +1099,7 @@ function bubbleChart() {
   var height = d3.select("body").select("svg").attr("height");
 
   // tooltip for mouseover functionality
-  var tooltip = floatingTooltip('gates_tooltip', 240);
+  var tooltip = floatingTooltip('gates_tooltip', 20);
 
   // Locations to move bubbles towards, depending
   // on which view mode is selected.
@@ -1220,17 +1224,23 @@ var coord=[0,0];
 
       area=d3.select(locval);
       coord=getBoundingBoxCenter(area);
-
+      //area.style("fill","#1111").style("stroke","#000000").style("stroke-width",1);
+      area.style("fill","#1111");
       return {
         id: d.ID,
-        radius: 2,
+        radius: 5,
+        tags:d.Tag,
         value: +d.total_amount,
         name: d.Name,
         country:d.Location_Country,
         location:d.Nationality,
+        date: new Date(d.Date.replace(",", "")),
         type:d.Type,
         org: d.organization,
         group: d.Type,
+        Place:(d.Type=="entity") ? 'Location: </span><span class="value">'+d.Location_Country  : 'Nationality: </span><span class="value">'+d.Nationality,
+   
+
         year: d.start_year,
         x: coord[0],
         y: coord[1]
@@ -1279,7 +1289,7 @@ var coord=[0,0];
       .attr('r', 2)
       .attr('fill', function (d) { return fillColor(d.group); })
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
-      .attr('stroke-width', 2)
+      .attr('stroke-width', 1)
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
 
@@ -1422,18 +1432,22 @@ function splitCountry() {
     // change outline to indicate hover state.
     d3.select(this).attr('stroke', 'black');
 
+//Name, Id, Date, No type needed., Kind, nationality for individual, vessel and craft and location for entity
+//button styling and spacing
+
+//name date nationality/location tags
     var content = '<span class="name">Name: </span><span class="value">' +
                   d.name +
                   '</span><br/>' +
+                     '<span class="name">Date: </span><span class="value"> ' +
+   d.date.toString().substring(0,16) +
+   '</span><br/>' +
+  
+                  '<span class="name">'+d.Place+'</span><br/>'+
+                '<span class="name">Tags: </span><span class="value">' +
+                  d.tags + '</span><br/>'
                   '<span class="name">Type: </span><span class="value">' +
-                  d.type +
-                  '</span><br/>' +
-                  '<span class="name">Location: </span><span class="value">' +
-                  d.location +
-                  '</span>' +
-                  '<span class="name">Nationality: </span><span class="value">' +
-                  d.country +
-                  '</span>';
+                  d.type + '</span><br/>';
 
     tooltip.showTooltip(content, d3.event);
   }
