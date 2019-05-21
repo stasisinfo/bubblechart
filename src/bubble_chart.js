@@ -35493,116 +35493,116 @@ var typeCenters={
 
 
   "January 2017": {
-   x: (width / 31),
+   x: (width / 30),
    y: height / 2
   },
   "February 2017": {
-   x: ((width / 31) * 2),
+   x: ((width / 30) * 2),
    y: height / 2
   },
   "March 2017": {
-   x: ((width / 31) * 3),
+   x: ((width / 30) * 3),
    y: height / 2
   },
   "April 2017": {
-   x: ((width / 31) * 4),
+   x: ((width / 30) * 4),
    y: height / 2
   },
   "May 2017": {
-   x: ((width / 31) * 5),
+   x: ((width / 30) * 5),
    y: height / 2
   },
   "June 2017": {
-   x: (width / 31) * 6,
+   x: (width / 30) * 6,
    y: height / 2
   },
   "July 2017": {
-   x: (width / 31) * 7,
+   x: (width / 30) * 7,
    y: height / 2
   },
   "August 2017": {
-   x: (width / 31) * 8,
+   x: (width / 30) * 8,
    y: height / 2
   },
   "September 2017": {
-   x: (width / 31) * 9,
+   x: (width / 30) * 9,
    y: height / 2
   },
   "October 2017": {
-   x: (width / 31) * 10,
+   x: (width / 30) * 10,
    y: height / 2
   },
   "November 2017": {
-   x: (width / 31) * 11,
+   x: (width / 30) * 11,
    y: height / 2
   },
   "December 2017": {
-   x: (width / 31) * 12,
+   x: (width / 30) * 12,
    y: height / 2
   },
   "January 2018": {
-   x: (width / 31) * 14,
+   x: (width / 30) * 14,
    y: height / 2
   },
   "February 2018": {
-   x: (width / 31) * 15,
+   x: (width / 30) * 15,
    y: height / 2
   },
   "March 2018": {
-   x: (width / 31) * 16,
+   x: (width / 30) * 16,
    y: height / 2
   },
   "April 2018": {
-   x: (width / 31) * 17,
+   x: (width / 30) * 17,
    y: height / 2
   },
   "May 2018": {
-   x: (width / 31) * 18,
+   x: (width / 30) * 18,
    y: height / 2
   },
   "June 2018": {
-   x: (width / 31) * 19,
+   x: (width / 30) * 19,
    y: height / 2
   },
   "July 2018": {
-   x: (width / 31) * 20,
+   x: (width / 30) * 20,
    y: height / 2
   },
   "August 2018": {
-   x: (width / 31) * 21,
+   x: (width / 30) * 21,
    y: height / 2
   },
   "September 2018": {
-   x: (width / 31) * 22,
+   x: (width / 30) * 22,
    y: height / 2
   },
   "October 2018": {
-   x: (width / 31) * 23,
+   x: (width / 30) * 23,
    y: height / 2
   },
   "November 2018": {
-   x: ((width / 31) * 24),
+   x: ((width / 30) * 24),
    y: height / 2
   },
   "December 2018": {
-   x: ((width / 31) * 25),
+   x: ((width / 30) * 25),
    y: height / 2
   },
   "January 2019": {
-   x: ((width / 31) * 26),
+   x: ((width / 30) * 26),
    y: height / 2
   },
   "February 2019": {
-   x: ((width / 31)*27)-(0.02*width),
+   x: ((width / 30)*27),
    y: height / 2
   },
   "March 2019": {
-   x: ((width / 31) * 29)-(0.02*width),
+   x: ((width / 30) * 29),
    y: height / 2
   },
 
   "April 2019": {
-   x: ((width / 31) * 30)-(0.02*width),
+   x: ((width / 30) * 30),
    y: height / 2
   }
  };
@@ -36124,12 +36124,12 @@ function vennBubbles() {
 
 
  // define the x scale (horizontal)
- var mindate = new Date(2016, 11, 1);
- var maxdate = new Date(2019, 03, 30);
+ var mindate = new Date(2017, 01, 1);
+ var maxdate = new Date(2019, 04, 15);
 
  var xScale = d3.time.scale()
   .domain([mindate, maxdate]) // values between for month of january
-  .range([0, 7/6*width]); // map these the the chart width = total width minus padding at both sides
+  .range([0,width*16/15]); // map these the the chart width = total width minus padding at both sides
 
 
 
@@ -36356,8 +36356,8 @@ hideTags();
    //console.log(d.year);
 
 
-   d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
-   d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
+   d.x = d.x + (target.x - d.x) * damper * alpha * 5;
+   d.y = d.y + (target.y - d.y) * damper * alpha * 2;
 
 
 
